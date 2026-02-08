@@ -1,0 +1,22 @@
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <h4>Új tweet</h4>
+            <div class="form-floating mb-3">
+                <textarea type="text" class="form-control" id="content" name="content" style="height: 150px">
+                </textarea>
+                <label for="name">Tweet tartalma</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3">
+            <label for="image" class="form-label">Kép</label>
+            <input class="form-control" type="file" id="image" name="image">
+        </div>
+        <div class="d-flex justify-content-between">
+            <a class="btn btn-outline-secondary" href="/tweet/<%= slug %>">Vissza</a>
+            <input type="submit" class="btn btn-primary" value="Mentés"/>
+        </div>
+    </div>
+</form>

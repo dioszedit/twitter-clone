@@ -1,0 +1,27 @@
+{
+  "name": "twitter_clone",
+  "version": "1.0.0",
+  "description": "Twitter clone",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "tweet"
+  ],
+  "author": "Edit Diószegi",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-regex": ">=5.0.1",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-flash-message": "^2.1.0",
+    "express-session": "^1.17.2",
+    "lokijs": "^1.5.12",
+    "multer": "^2.0.2",
+    "nodemon": "^3.1.11",
+    "slugify": "^1.6.0",
+    "uuid": "^8.3.2"
+  }
+}

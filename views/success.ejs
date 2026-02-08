@@ -1,0 +1,10 @@
+<% if( typeof success !== 'undefined' && success.length > 0) { %>
+    <div class="alert alert-success mt-2" role="alert">
+        <%= success %>
+    </div>
+<% } %>
+<script>
+    $("div .alert-success").fadeTo(2000, 500).slideUp(500, function () {
+        $("div .alert-success").slideUp(500);
+    });
+</script>

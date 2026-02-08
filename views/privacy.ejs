@@ -1,0 +1,78 @@
+<%- include('header') %>
+<%- include('navbar', {title:'Adatvédelmi nyilatkozat'}) %>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="row d-flex justify-content-center px-4">
+                <h1>Lorem Ipsum</h1>
+                <h4>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+                    velit..."</h4>
+                <hr>
+                <div id="lipsum">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum maximus
+                        porttitor. Nullam eu lobortis tellus. Etiam mi ante, luctus et auctor non, lacinia laoreet enim.
+                        Nullam vitae pharetra nulla. Aenean eu vulputate est. Duis id maximus sem, ut posuere augue. Sed
+                        id magna nec mauris mattis laoreet id dignissim ligula. Mauris et congue nulla, ac maximus
+                        turpis. Morbi at sagittis arcu. Integer aliquam porta faucibus. Ut ut blandit erat. Duis at
+                        tempus ante, eleifend molestie ex. Cras fringilla lorem sit amet purus lacinia pulvinar. Cras
+                        quis urna rutrum, rutrum magna ac, ullamcorper libero. Suspendisse nisl tortor, sagittis et ante
+                        ut, rutrum malesuada eros. Etiam pretium eu eros nec elementum.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Curabitur
+                        bibendum cursus finibus. Vivamus porttitor libero vel viverra lacinia. Proin vel rutrum enim,
+                        sit amet congue elit. Duis non tincidunt nulla, nec fringilla lectus. Cras felis augue,
+                        dignissim vel efficitur sit amet, feugiat vel est. Sed ut orci id libero mattis euismod sit amet
+                        non urna. Proin a ultrices lacus, in aliquam urna. In et augue ac augue dictum consequat. Ut
+                        blandit, dui ut cursus sagittis, ante metus elementum neque, at mattis massa mi non turpis.
+                        Suspendisse ipsum ex, lacinia a nunc ut, feugiat pharetra ligula. Maecenas eleifend velit eget
+                        justo dignissim pretium. Nulla gravida nulla dolor, eget hendrerit nulla blandit ut.
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In
+                        lobortis sit amet sapien quis ullamcorper.
+                    </p>
+                    <p>
+                        Maecenas at lorem non elit gravida volutpat ut id tellus. Nulla congue, lectus nec lobortis
+                        vulputate, dui mauris egestas ligula, eget placerat elit magna ac erat. Aenean at tempor magna,
+                        sed mollis urna. Maecenas nec mi massa. Vestibulum commodo lorem a lorem fringilla sodales.
+                        Proin eget efficitur nisl, eu iaculis augue. Suspendisse a felis id lorem tempus volutpat
+                        tincidunt quis orci. Curabitur lacinia eu justo eget mattis. In sed posuere augue, ac blandit
+                        arcu.
+                    </p>
+                    <p>
+                        Donec eget finibus urna, eget vehicula dolor. Curabitur nibh ex, suscipit id interdum a,
+                        hendrerit et elit. Fusce a dolor nec velit consectetur imperdiet quis sit amet neque. Nullam ac
+                        tincidunt ante. Phasellus magna sapien, feugiat vitae tempor eget, blandit at nulla. Vivamus
+                        tincidunt nunc a orci consequat, id maximus ipsum convallis. Sed eu magna non sapien feugiat
+                        interdum nec at lorem. Etiam sodales nulla elementum, eleifend lorem non, vestibulum lorem.
+                        Quisque sed velit pellentesque, ultrices magna finibus, pretium nulla. Fusce sodales lectus sed
+                        rutrum auctor. Praesent ullamcorper libero sed tellus placerat, et tempor eros tincidunt.
+                        Vivamus nibh eros, tempus scelerisque elementum in, congue id augue. Etiam vel turpis varius,
+                        vehicula ipsum ut, elementum ante.
+                    </p>
+                    <p>
+                        Vestibulum risus lorem, porta eget metus ut, luctus bibendum nunc. Mauris non lorem lacinia,
+                        volutpat tellus eu, bibendum diam. Pellentesque id felis aliquam, vulputate massa id, sagittis
+                        sem. Vivamus sit amet pharetra arcu. Vivamus pretium consequat mi sed interdum. Donec aliquam
+                        augue at dolor efficitur, et rutrum neque efficitur. Fusce auctor lectus eget purus ultrices, id
+                        tempor ipsum mollis. Curabitur ac nulla vel libero bibendum rutrum maximus ac mauris. Morbi
+                        eleifend est quis diam placerat, in mollis arcu scelerisque. Vestibulum suscipit, enim non
+                        mollis suscipit, augue ante faucibus risus, sit amet condimentum metus purus eu nibh. Donec erat
+                        odio, euismod eu neque ac, viverra posuere est. Vivamus tincidunt ac justo eu gravida. Aliquam
+                        nec dui scelerisque, aliquam lacus eu, tincidunt urna. Donec ac risus id nibh egestas pretium id
+                        et enim.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-5">
+            <% if(!adminUser) { %>
+                <%- include('forms/login') %>
+            <% } %>
+            <div class="d-grid gap-2 mb-5">
+                <a class="btn btn-outline-secondary" href="/">Vissza a főoldalra</a>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer') %>

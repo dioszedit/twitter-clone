@@ -1,0 +1,10 @@
+<div class="col-10 col-sm-6 col-md-6 col-lg-4 mb-4">
+    <div class="card ">
+        <img class="rounded-circle m-5" src="/upload/<%= user.profile_img ? user.profile_img : 'default.png' %>">
+        <div class="card-body text-center">
+            <a class="btn btn-light fw-bold " href="/tweet/<%= user.slug %>"><%= user.name %></a>
+            <p class="card-text">Tweetek száma: <%= user.tweets_count %> db</p>
+            <small class="fst-italic">Csatlakozás dátuma: <%= new Date(user.created_at).toLocaleDateString() %></small>
+        </div>
+    </div>
+</div>

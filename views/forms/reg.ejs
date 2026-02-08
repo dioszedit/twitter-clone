@@ -1,0 +1,24 @@
+<form action="/reg" method="post">
+    <h4>Regisztráció</h4>
+    <%- include('../errors') %>
+    <div class="form-floating mb-3">
+        <input type="name" class="form-control" id="name" placeholder="name@example.com" name="name">
+        <label for="name">Név</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        <label for="email">Email cím</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" placeholder="*********" name="password">
+        <label for="password">Jelszó</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="rePassword" placeholder="*********" name="rePassword">
+        <label for="re-password">Jelszó ismét</label>
+    </div>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-outline-secondary" href="/">Vissza a főoldalra</a>
+        <input type="submit" class="btn btn-primary" value="Mentés"/>
+    </div>
+</form>

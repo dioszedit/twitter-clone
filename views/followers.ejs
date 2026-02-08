@@ -1,0 +1,72 @@
+<%- include('header') %>
+<%- include('navbar', {title: 'Követéseim' }) %>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-md-8  mb-5">
+            <div class="row mb-2">
+                <div class="col">
+                    <img src="/upload/default_header.jpg" class="img-fluid rounded w-100">
+                </div>
+            </div>
+            <div id="tweets" class="row d-flex justify-content-center">
+                <h3 class="mb-5 mt-3">Követéseim</h3>
+                <% for (let i = 0; i < Math.min(tweets.length, 6); i++){ %>
+                    <%- include('tweetcard', {user: users.filter(e => e.id === tweets[i].userid)[0], isOwner:false, tweet: tweets[i]}) %>
+                <% } %>
+                <% if( tweets.length === 0) { %>
+                    <p class="text-center">Még senkit sem követsz.</p>
+                <% } %>
+            </div>
+            <% if (tweets.length > 6) { %>
+                <div id="continue" class="row">
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="p-2 btn btn-outline-secondary mb-5" onclick="getTweets()">További
+                            találatok
+                        </button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <div class="col-12 col-md-4 mb-5">
+            <div class="d-grid gap-2">
+                <% if(adminUser) { %>
+                    <%- include('sidebar', {active: '/my-followers'}) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <script>
+        let timestamp = <%= tweets.length > 6 ? tweets[5].created_at : 0 %>;
+
+        function getTweets() {
+            let url = "/my-followers/" + timestamp
+            $.ajax({
+                url: url + '/json',
+                method: "GET",
+                cache: false
+            }).done(function (result) {
+
+                getTweetsHtml(timestamp);
+                timestamp = result.timestamp;
+
+                if (result.isContinue === false) {
+                    $('#continue').addClass("d-none");
+                }
+            });
+        }
+
+        function getTweetsHtml(ts) {
+            let url = "/my-followers/" + ts
+            $.ajax({
+                url: url + '/html',
+                method: "GET",
+                cache: false,
+            }).done(function (result) {
+                $('#tweets').append(result);
+            });
+        }
+    </script>
+</div>
+
+<%- include('footer') %>

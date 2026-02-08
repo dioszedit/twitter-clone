@@ -1,0 +1,92 @@
+<%- include('header') %>
+<%- include('navbar', {title: user.name }) %>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-md-8  mb-5">
+            <div class="row mb-2">
+                <div class="col">
+                    <img src="/upload/<%= user.header_img ? user.header_img : 'default_header.jpg' %>"
+                         class="img-fluid rounded w-100">
+                </div>
+            </div>
+            <div id="tweets" class="row d-flex justify-content-center">
+                <h3><%= user.name %> tweet oldala</h3>
+                <div class="row mb-2">
+                    <div class="col">Csatlakozás dátuma: <%= new Date(user.created_at).toLocaleString() %></div>
+                    <% if(adminUser && !isOwner) { %>
+                    <% if(followers.includes(user.id) === false) { %>
+                        <div class="col">
+                            <a class="btn btn-secondary float-end" href="/following/<%= user.id %>"> Követés</a>
+                        </div>
+                    <% } else { %>
+                        <div class="col">
+                            <a class="btn btn-outline-secondary float-end" href="/following/<%= user.id %>/del"> Követés
+                                vissszavonása</a>
+                        </div>
+                    <% }
+                    } %>
+                </div>
+                <% for (let i = 0; i < Math.min(tweets.length, 6); i++){ %>
+                    <%- include('tweetcard', {user, isOwner, tweet: tweets[i]}) %>
+                <% } %>
+                <% if( tweets.length === 0) { %>
+                    <p class="text-center">Felhasználónk még nem készített bejegyzést.</p>
+                <% } %>
+            </div>
+            <% if (tweets.length > 6) { %>
+                <div id="continue" class="row">
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="p-2 btn btn-outline-secondary mb-5" onclick="getTweets()">További
+                            találatok
+                        </button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <div class="col-12 col-md-4 mb-5">
+            <% if(!adminUser) { %>
+                <%- include('forms/login') %>
+            <% } %>
+            <div class="d-grid gap-2">
+                <% if(adminUser) { %>
+                    <%- include('sidebar', {active: '/tweet/' + slug}) %>
+                <% } else { %>
+                    <a class="btn btn-outline-secondary mb-5" href="/">Vissza a főoldalra</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <script>
+        let timestamp = <%= tweets.length > 6 ? tweets[5].created_at : 0 %>;
+
+        function getTweets() {
+            let url = "/tweets/<%= user.slug %>/" + timestamp
+            $.ajax({
+                url: url + '/json',
+                method: "GET",
+                cache: false
+            }).done(function (result) {
+
+                getTweetsHtml(timestamp);
+                timestamp = result.timestamp;
+
+                if (result.isContinue === false) {
+                    $('#continue').addClass("d-none");
+                }
+            });
+        }
+
+        function getTweetsHtml(ts) {
+            let url = "/tweets/<%= user.slug %>/" + ts
+            $.ajax({
+                url: url + '/html',
+                method: "GET",
+                cache: false,
+            }).done(function (result) {
+                $('#tweets').append(result);
+            });
+        }
+    </script>
+</div>
+<%- include('footer') %>

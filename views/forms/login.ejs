@@ -1,0 +1,19 @@
+<form action="/" method="post">
+    <h4>Bejelentkezés</h4>
+    <%- include('../errors') %>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email">
+        <label for="email">Email cím</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" placeholder="*********" name="password">
+        <label for="password">Jelszó</label>
+    </div>
+    <div class="d-grid gap-2">
+        <input type="submit" class="btn btn-primary d-block" value="Bejelentkezés"/>
+        <a class="btn btn-link" href="/forgotpw">Elfelejtette a jelszót?</a>
+        <hr>
+        <a class="btn btn-outline-primary" href="/reg">Regisztráció</a>
+    </div>
+    <%- include('../success') %>
+</form>

@@ -1,0 +1,87 @@
+<form action="profile" method="post" enctype="multipart/form-data">
+    <h4>Profilom</h4>
+    <%- include('../success') %>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" placeholder="Kiss István" name="name"
+                       value="<%= user.name %>">
+                <label for="email">Név</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+                       value="<%= user.email %>">
+                <label for="email">Email cím</label>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <label for="profile" class="form-label">Profilkép</label>
+            <% if(user.profile_img) { %>
+            <div id="profile-img-div" class="mb-3 text-center">
+                <img class="rounded-circle" style="max-height: 150px;" src="/upload/<%= user.profile_img %>">
+            </div>
+            <div class="mb-3 float-end">
+                <a class="btn btn-outline-secondary mx-1" id="del-profile-img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                </a>
+            </div>
+            <% } %>
+            <div id="upload-profile" <% if(user.profile_img) { %>class="d-none" <% } %>>
+                <input class="form-control" type="file" id="profile" name="profile">
+                <input type="hidden" id="profile-img" name="profile_img" value="<%= user.profile_img %>">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label for="header" class="form-label">Tweet oldalam fejléce</label>
+            <% if(user.header_img) { %>
+            <div id="header-img-div" class="mb-3">
+                <img class="img-fluid rounded w-100" style="max-height: 150px;" src="/upload/<%= user.header_img %>" alt="">
+            </div>
+
+            <div class="mb-3 float-end">
+                <a class="btn btn-outline-secondary mx-1" id="del-header-img">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg>
+                </a>
+            </div>
+            <% } %>
+            <div id="upload-header" <% if(user.header_img) { %>class="d-none" <% } %>>
+                <input class="form-control" type="file" id="header" name="header">
+                <input type="hidden" id="header-img" name="header_img" value="<%= user.header_img %>">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between mt-2">
+                <a class="btn btn-outline-secondary" href="/tweet/slugname">Vissza</a>
+                <input type="submit" class="btn btn-primary" value="Mentés"/>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    $('#del-profile-img').click(() => {
+        $('#profile-img').val('');
+        $('#del-profile-img').hide();
+        $('#profile-img-div').hide("slow");
+        $('#upload-profile').removeClass('d-none');
+    });
+
+    $('#del-header-img').click(() => {
+        $('#header-img').val('');
+        $('#del-header-img').hide();
+        $('#header-img-div').hide("slow");
+        $('#upload-header').removeClass('d-none');
+    });
+</script>

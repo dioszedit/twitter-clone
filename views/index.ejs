@@ -1,0 +1,63 @@
+<%- include('header') %>
+<%- include('navbar', {title:'Főoldal'}) %>
+
+<div class="container mt-4" style="margin-bottom: 100px;">
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div id="users" class="row d-flex justify-content-center">
+                <% for (let i = 0; i < Math.min(users.length, 6); i++){ %>
+                    <%- include('usercard', {user: users[i]}) %>
+                <% } %>
+            </div>
+            <% if (users.length > 6) { %>
+                <div class="row mb-5" id="continue">
+                    <div class="d-flex justify-content-center">
+                        <button type="button" class="p-2 btn btn-outline-secondary mb-5" onclick="getUsers()">További
+                            találatok
+                        </button>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <div class="col-12 col-md-4">
+            <% if(!adminUser) { %>
+                <%- include('forms/login') %>
+            <% } else { %>
+                <%- include('success') %>
+                <%- include('sidebar', {active: '/'}) %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+<script>
+    let timestamp = <%= users.length > 6 ? users[5].created_at : 0 %>;
+
+    function getUsers() {
+        let url = "/users/" + timestamp
+        $.ajax({
+            url: url + '/json',
+            method: "GET",
+            cache: false
+        }).done(function (result) {
+            getUsersHtml(timestamp);
+            timestamp = result.timestamp;
+
+            if (result.isContinue === false) {
+                $('#continue').addClass("d-none");
+            }
+        });
+    }
+
+    function getUsersHtml(ts) {
+        let url = "/users/" + ts
+        $.ajax({
+            url: url + '/html',
+            method: "GET",
+            cache: false,
+        }).done(function (result) {
+            $('#users').append(result);
+        });
+    }
+</script>
+<%- include('footer') %>
